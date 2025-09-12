@@ -2,10 +2,9 @@
 import LoginCard, { Credentials } from "@/components/LoginCard";
 import { login } from "@/services/login";
 import { useToast } from "@/hooks/useToast";
-import { Fragment } from "react";
 import styled from "styled-components";
 
-const Container = styled.div`
+export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,7 +13,7 @@ const Container = styled.div`
     padding: 16px;
 `;
 
-const HeaderTitle = styled.h1`
+export const HeaderTitle = styled.h1`
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 24px;

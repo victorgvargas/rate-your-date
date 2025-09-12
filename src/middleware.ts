@@ -7,8 +7,12 @@ export function middleware(request: NextRequest) {
 
     const { pathname } = request.nextUrl;
 
+    // Public routes that don't require authentication
+    const publicRoutes = ["/login", "/register"];
+    const isPublicRoute = publicRoutes.includes(pathname);
+
     // If user is not logged in and tries to access a protected route
-    if (!isLoggedIn && pathname === "/") {
+    if (!isLoggedIn && !isPublicRoute && pathname === "/") {
         const loginUrl = new URL("/login", request.url);
         return NextResponse.redirect(loginUrl);
     }
