@@ -3,6 +3,7 @@ import LoginCard, { Credentials } from "@/components/LoginCard";
 import { login } from "@/services/login";
 import { useToast } from "@/hooks/useToast";
 import styled from "styled-components";
+import { useRouter } from "next/navigation";
 
 export const Container = styled.div`
     display: flex;
@@ -22,12 +23,14 @@ export const HeaderTitle = styled.h1`
 
 export default function Page() {
     const toast = useToast();
+    const router = useRouter();
 
     const handleLogin = async (credentials: Credentials) => {
         try {
             const data = await login(credentials.email, credentials.password);
             toast.success("Login successful! Welcome back.", "Success");
             // Handle successful login (e.g., redirect)
+            router.push("/home");
         } catch (error) {
             toast.error(
                 error instanceof Error ? error.message : "An unexpected error occurred during login.",
